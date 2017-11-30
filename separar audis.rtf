@@ -1,0 +1,29 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf100
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red104\green26\blue29;\red235\green236\blue237;\red43\green39\blue19;
+\red36\green38\blue41;\red114\green121\blue129;}
+{\*\expandedcolortbl;;\cssrgb\c49020\c15294\c15294;\cssrgb\c93725\c94118\c94510;\cssrgb\c22353\c20000\c9412;
+\cssrgb\c18824\c20000\c21176;\cssrgb\c52157\c54902\c57647;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl300\partightenfactor0
+
+\f0\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 [\cf4 \strokec4 x1\cf5 \strokec5 , \cf4 \strokec4 Fs1\cf2 \strokec2 ]\cf5 \strokec5  = \cf4 \strokec4 audioread\cf2 \strokec2 ('mix1.wav')\cf5 \strokec5 ;\
+\cf2 \strokec2 [\cf4 \strokec4 x2\cf5 \strokec5 , \cf4 \strokec4 Fs2\cf2 \strokec2 ]\cf5 \strokec5  = \cf4 \strokec4 audioread\cf2 \strokec2 ('mix2.wav')\cf5 \strokec5 ;\
+\pard\pardeftab720\sl300\partightenfactor0
+\cf4 \strokec4 xx\cf5 \strokec5  = \cf2 \strokec2 [\cf4 \strokec4 x1\cf5 \strokec5 , \cf4 \strokec4 x2\cf2 \strokec2 ]\cf4 \strokec4 '\cf5 \strokec5 ;\
+\cf4 \strokec4 yy\cf5 \strokec5  = \cf4 \strokec4 sqrtm\cf2 \strokec2 (\cf4 \strokec4 inv\cf2 \strokec2 (\cf4 \strokec4 cov\cf2 \strokec2 (\cf4 \strokec4 xx'\cf2 \strokec2 )))\cf5 \strokec5 *\cf2 \strokec2 (\cf4 \strokec4 xx\cf5 \strokec5 -\cf4 \strokec4 repmat\cf2 \strokec2 (\cf4 \strokec4 mean\cf2 \strokec2 (\cf4 \strokec4 xx\cf5 \strokec5 ,\cf2 \strokec2 2)\cf5 \strokec5 ,\cf2 \strokec2 1\cf5 \strokec5 ,\cf4 \strokec4 size\cf2 \strokec2 (\cf4 \strokec4 xx\cf5 \strokec5 ,\cf2 \strokec2 2)))\cf5 \strokec5 ;\
+\pard\pardeftab720\sl300\partightenfactor0
+\cf2 \strokec2 [\cf4 \strokec4 W\cf5 \strokec5 ,\cf4 \strokec4 s\cf5 \strokec5 ,\cf4 \strokec4 v\cf2 \strokec2 ]\cf5 \strokec5  = \cf4 \strokec4 svd\cf2 \strokec2 ((\cf4 \strokec4 repmat\cf2 \strokec2 (\cf4 \strokec4 sum\cf2 \strokec2 (\cf4 \strokec4 yy\cf5 \strokec5 .*\cf4 \strokec4 yy\cf5 \strokec5 ,\cf2 \strokec2 1)\cf5 \strokec5 ,\cf4 \strokec4 size\cf2 \strokec2 (\cf4 \strokec4 yy\cf5 \strokec5 ,\cf2 \strokec2 1)\cf5 \strokec5 ,\cf2 \strokec2 1)\cf5 \strokec5 .*\cf4 \strokec4 yy\cf2 \strokec2 )\cf5 \strokec5 *\cf4 \strokec4 yy'\cf2 \strokec2 )\cf5 \strokec5 ;\
+\
+\pard\pardeftab720\sl300\partightenfactor0
+\cf4 \strokec4 a\cf5 \strokec5  = \cf4 \strokec4 W\cf5 \strokec5 *\cf4 \strokec4 xx\cf5 \strokec5 ; \cf6 \strokec6 %W is unmixing matrix\cf5 \strokec5 \
+\cf4 \strokec4 subplot\cf2 \strokec2 (2\cf5 \strokec5 ,\cf2 \strokec2 2\cf5 \strokec5 ,\cf2 \strokec2 1)\cf5 \strokec5 ; \cf4 \strokec4 plot\cf2 \strokec2 (\cf4 \strokec4 x1\cf2 \strokec2 )\cf5 \strokec5 ; \cf4 \strokec4 title\cf2 \strokec2 ('mixed audio - mic 1')\cf5 \strokec5 ;\
+\cf4 \strokec4 subplot\cf2 \strokec2 (2\cf5 \strokec5 ,\cf2 \strokec2 2\cf5 \strokec5 ,\cf2 \strokec2 2)\cf5 \strokec5 ; \cf4 \strokec4 plot\cf2 \strokec2 (\cf4 \strokec4 x2\cf2 \strokec2 )\cf5 \strokec5 ; \cf4 \strokec4 title\cf2 \strokec2 ('mixed audio - mic 2')\cf5 \strokec5 ;\
+\cf4 \strokec4 subplot\cf2 \strokec2 (2\cf5 \strokec5 ,\cf2 \strokec2 2\cf5 \strokec5 ,\cf2 \strokec2 3)\cf5 \strokec5 ; \cf4 \strokec4 plot\cf2 \strokec2 (\cf4 \strokec4 a\cf2 \strokec2 (1\cf5 \strokec5 ,:\cf2 \strokec2 )\cf5 \strokec5 , \cf2 \strokec2 'g')\cf5 \strokec5 ; \cf4 \strokec4 title\cf2 \strokec2 ('unmixed wave 1')\cf5 \strokec5 ;\
+\cf4 \strokec4 subplot\cf2 \strokec2 (2\cf5 \strokec5 ,\cf2 \strokec2 2\cf5 \strokec5 ,\cf2 \strokec2 4)\cf5 \strokec5 ; \cf4 \strokec4 plot\cf2 \strokec2 (\cf4 \strokec4 a\cf2 \strokec2 (2\cf5 \strokec5 ,:\cf2 \strokec2 )\cf5 \strokec5 ,\cf2 \strokec2 'r')\cf5 \strokec5 ; \cf4 \strokec4 title\cf2 \strokec2 ('unmixed wave 2')\cf5 \strokec5 ;\
+\
+\cf4 \strokec4 audiowrite\cf2 \strokec2 ('unmixed1.wav'\cf5 \strokec5 , \cf4 \strokec4 a\cf2 \strokec2 (1\cf5 \strokec5 ,:\cf2 \strokec2 )\cf5 \strokec5 , \cf4 \strokec4 Fs1\cf2 \strokec2 )\cf5 \strokec5 ;\
+\cf4 \strokec4 audiowrite\cf2 \strokec2 ('unmixed2.wav'\cf5 \strokec5 , \cf4 \strokec4 a\cf2 \strokec2 (2\cf5 \strokec5 ,:\cf2 \strokec2 )\cf5 \strokec5 , \cf4 \strokec4 Fs1\cf2 \strokec2 )\cf5 \strokec5 ;\cf4 \strokec4 \
+}
