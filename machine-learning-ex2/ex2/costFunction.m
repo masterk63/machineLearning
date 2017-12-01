@@ -21,11 +21,12 @@ grad = zeros(size(theta));
 %
 
 
+% calculate cost function
+h = sigmoid(X*theta);
+J = ((-y)'*log(h)-(1-y)'*log(1-h))/m;
 
-
-
-
-
+% calculate grads
+grad = (X'*(h - y))/m;
 
 % =============================================================
 
