@@ -30,7 +30,21 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+% a = X(1:10,1:10)
+% b = all_theta(:,1:10)
 
+% ps = sigmoid(a*b)
+
+% Tengo 5000 ejemplos de numeros escritos, cada uno tiene 400 datos para evuluar,
+% tengo los 10 numeros con las 10 filas de theta, que corresponden a cada numoer,
+% entonces, multiplico X con cada theta de cada numero, es como preguntar a ejemplo, vos 
+% el 1, sos el 2 y asi.... entoncs elq que mayor porcentaje de acierto de, ese es,
+% ahora, como la posicion del mayor pocentaje se corresponde con la posicion de cada 
+% columna, esa es mi prediccion Y
+
+ps = sigmoid(X*all_theta');
+[p_max, i_max]=max(ps, [], 2);
+p = i_max;
 
 
 
