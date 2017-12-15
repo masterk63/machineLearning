@@ -16,6 +16,8 @@ function [J grad] = nnCostFunction(nn_params, ...
 
 % Reshape nn_params back into the parameters Theta1 and Theta2, the weight matrices
 % for our 2 layer neural network
+
+
 Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
                  hidden_layer_size, (input_layer_size + 1));
 
@@ -23,7 +25,8 @@ Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):en
                  num_labels, (hidden_layer_size + 1));
 
 % Setup some useful variables
-m = size(X, 1);
+
+m = size(X, 1)
          
 % You need to return the following variables correctly 
 J = 0;
@@ -66,6 +69,41 @@ Theta2_grad = zeros(size(Theta2));
 
 
 
+% recode y to Y
+I = eye(num_labels);
+Y = zeros(m, num_labels);
+for i=1:m
+  Y(i, :)= I(y(i), :);
+end
+
+% feedforward
+a1 = [ones(m, 1) X]; % X es 5000x400, entonces a1 es 5000x401
+z2 = a1*Theta1';  % theta es 25x401, entonces Z2 = 5000x25
+a2 = [ones(size(z2, 1), 1) sigmoid(z2)]; %a2 = 5000x26
+z3 = a2*Theta2'; %theta2 es 10x26
+a3 = sigmoid(z3);
+h = a3;
+
+% calculte penalty
+p = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2));
+
+% calculate J
+J = sum(sum((-Y).*log(h) - (1-Y).*log(1-h), 2))/m + lambda*p/(2*m);
+
+% calculate sigmas
+sigma3 = a3.-Y;
+sigma2 = (sigma3*Theta2).*sigmoidGradient([ones(size(z2, 1), 1) z2]);
+sigma2 = sigma2(:, 2:end);
+
+% accumulate gradients
+delta_1 = (sigma2'*a1);
+delta_2 = (sigma3'*a2);
+
+% calculate regularized gradient
+p1 = (lambda/m)*[zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
+p2 = (lambda/m)*[zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
+Theta1_grad = delta_1./m + p1;
+Theta2_grad = delta_2./m + p2;
 
 
 
