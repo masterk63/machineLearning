@@ -88,6 +88,7 @@ h = a3;
 p = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2));
 
 % calculate J
+% Sin regularizar J = sum(sum((-Y).*log(h) - (1-Y).*log(1-h), 2))/m
 J = sum(sum((-Y).*log(h) - (1-Y).*log(1-h), 2))/m + lambda*p/(2*m);
 
 % calculate sigmas
